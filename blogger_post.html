@@ -167,108 +167,132 @@ li:before {
 </head>
 <body>
 <div class="post-body">
-    <h1 class="post-title">Space Fighter: A Modern Take on Classic Arcade Gaming</h1>
+    <h1 class="post-title">Building Space Fighter: My Journey Creating a C-based Arcade Game</h1>
     
     <div class="post-meta">
-        Published: May 25, 2025 | Category: Game Development | 10 min read
+        Published: May 28, 2023 | Category: Game Development | 8 min read
     </div>
 
     <img src="screenshots/mainmenu.png" alt="Space Fighter Main Menu" class="post-image">
-    <p class="image-caption">The sleek and modern main menu of Space Fighter</p>
+    <p class="image-caption">The main menu interface I designed for Space Fighter</p>
 
-    <p>Hey there, fellow gamers and developers! 👋 Today, I'm thrilled to share my latest project: Space Fighter, a modern 2D space shooter that combines the nostalgic charm of classic arcade games with contemporary game design principles. Let's dive into what makes this game special and how you can get started playing it!</p>
+    <p>Hello fellow developers and gaming enthusiasts! 👋 Today I'm excited to share the development process behind my latest project: Space Fighter. This game represents my passion for classic arcade shooters reimagined with modern programming techniques in C. Let me walk you through how I built it from concept to completion.</p>
 
-    <div class="download-section">
-        <h2>🚀 Quick Start Guide</h2>
-        <p>Ready to jump into the action? Here's how to get started:</p>
-        <ol>
-            <li>Download the latest release from the GitHub repository</li>
-            <li>Extract the ZIP file to your preferred location</li>
-            <li>Run the executable file (SpaceFighter.exe)</li>
-            <li>Enjoy the game! 🎮</li>
-        </ol>
-        <a href="https://github.com/akashadsare/Space_fighter/releases" class="download-button">Download Space Fighter</a>
-    </div>
-
-    <h2>🎮 Game Features</h2>
-    <p>Space Fighter isn't just another space shooter. It's a carefully crafted experience that balances classic gameplay with modern features:</p>
+    <h2>🚀 The Concept & Inspiration</h2>
+    <p>Space Fighter began as a personal challenge to create a responsive arcade-style game using pure C programming. I've always been fascinated by classic space shooters like Space Invaders and Galaga, and wanted to build my own interpretation while learning more about game development fundamentals.</p>
 
     <img src="screenshots/game.png" alt="Space Fighter Gameplay" class="post-image">
-    <p class="image-caption">Intense gameplay action with multiple enemies and power-ups</p>
+    <p class="image-caption">The core gameplay loop with custom sprite rendering and collision detection</p>
 
-    <h3>Core Gameplay</h3>
+    <h3>Design Philosophy</h3>
     <ul>
-        <li>Fast-paced space combat with multiple enemy types</li>
-        <li>Dynamic power-up system with strategic depth</li>
-        <li>Progressive difficulty scaling</li>
-        <li>Score tracking and achievements</li>
-        <li>Customizable ship colors and backgrounds</li>
+        <li>Focus on smooth, responsive controls</li>
+        <li>Create escalating difficulty that feels challenging but fair</li>
+        <li>Implement visual feedback that feels satisfying</li>
+        <li>Keep the core mechanics simple but engaging</li>
     </ul>
 
-    <h2>💻 Technical Deep Dive</h2>
-    <p>As a developer, I'm particularly proud of the technical implementation. Here's what went into building Space Fighter:</p>
+    <h2>💻 Technical Implementation</h2>
+    <p>Building Space Fighter taught me valuable lessons about game architecture and C programming. Here's how I approached the technical aspects:</p>
 
     <div class="tech-stack">
-        <span class="tech-item">Python 3.8+</span>
-        <span class="tech-item">Pygame 2.0</span>
-        <span class="tech-item">Object-Oriented Design</span>
-        <span class="tech-item">Sprite-Based Graphics</span>
+        <span class="tech-item">C Language</span>
+        <span class="tech-item">SDL2 Library</span>
+        <span class="tech-item">Custom Physics</span>
+        <span class="tech-item">Sprite Animation</span>
     </div>
 
-    <h3>Key Technical Features</h3>
+    <h3>Core Technical Components</h3>
     <ul>
-        <li>Efficient sprite management and collision detection</li>
-        <li>State-based game architecture</li>
-        <li>Optimized particle effects system</li>
-        <li>Dynamic sound management</li>
+        <li><strong>Game Loop:</strong> Implemented a fixed time step game loop for consistent gameplay across different hardware</li>
+        <li><strong>Collision System:</strong> Created a pixel-perfect collision detection system for accurate hit registration</li>
+        <li><strong>Entity Management:</strong> Developed a flexible entity system to handle various game objects</li>
+        <li><strong>Rendering Pipeline:</strong> Built an efficient rendering system with sprite batching</li>
     </ul>
 
-    <h2>🎯 Controls & Gameplay Tips</h2>
-    <p>Mastering Space Fighter is easy to learn but challenging to master:</p>
-    <ul>
-        <li><strong>Movement:</strong> Arrow keys or WASD</li>
-        <li><strong>Shoot:</strong> Space bar</li>
-        <li><strong>Pause:</strong> ESC key</li>
-        <li><strong>Restart:</strong> R key</li>
-    </ul>
+    <div class="code-block">
+// Example of my game loop implementation
+void game_loop() {
+    const double MS_PER_UPDATE = 16.0;
+    double previous = get_time_ms();
+    double lag = 0.0;
+    
+    while (running) {
+        double current = get_time_ms();
+        double elapsed = current - previous;
+        previous = current;
+        lag += elapsed;
+        
+        process_input();
+        
+        while (lag >= MS_PER_UPDATE) {
+            update();
+            lag -= MS_PER_UPDATE;
+        }
+        
+        render(lag / MS_PER_UPDATE);
+    }
+}
+</div>
 
-    <h2>🔧 Development Journey</h2>
-    <p>Building Space Fighter was an exciting journey that taught me valuable lessons about game development:</p>
+    <h2>🎮 Building the Game Mechanics</h2>
+    <p>The heart of Space Fighter lies in its carefully tuned game mechanics:</p>
 
     <img src="screenshots/gameloadingscreen.png" alt="Space Fighter Loading Screen" class="post-image">
-    <p class="image-caption">The dynamic loading screen that builds anticipation</p>
+    <p class="image-caption">The loading screen I designed to set the game's atmosphere</p>
 
-    <h3>Key Challenges & Solutions</h3>
+    <h3>Key Gameplay Elements</h3>
     <ul>
-        <li>Implementing smooth collision detection for fast-paced gameplay</li>
-        <li>Creating an engaging difficulty curve</li>
-        <li>Optimizing performance for various hardware</li>
-        <li>Designing an intuitive UI/UX</li>
+        <li><strong>Player Movement:</strong> Implemented smooth, responsive controls with acceleration and deceleration</li>
+        <li><strong>Enemy AI:</strong> Created various enemy types with distinct movement patterns and attack behaviors</li>
+        <li><strong>Weapon Systems:</strong> Designed multiple weapon types with unique projectile behaviors</li>
+        <li><strong>Power-up System:</strong> Implemented a dynamic power-up system that changes gameplay strategy</li>
     </ul>
 
-    <h2>🔮 Future Roadmap</h2>
-    <p>The adventure doesn't end here! Here's what's coming next:</p>
+    <h2>🎨 Graphics and Sound Design</h2>
+    <p>Despite working with C's limitations, I wanted to create a visually appealing experience:</p>
     <ul>
-        <li>New enemy types and boss battles</li>
-        <li>Additional power-ups and weapons</li>
-        <li>Online leaderboards</li>
-        <li>Special challenge modes</li>
-        <li>More customization options</li>
+        <li>Hand-designed pixel art sprites for all game elements</li>
+        <li>Created a particle system for explosions and effects</li>
+        <li>Implemented dynamic lighting for weapon fire and explosions</li>
+        <li>Composed chiptune-inspired sound effects and background music</li>
+    </ul>
+
+    <h2>🔧 Challenges & Solutions</h2>
+    <p>The development journey wasn't without obstacles. Here are some key challenges I faced:</p>
+
+    <h3>Memory Management</h3>
+    <p>Working in C meant handling memory manually. I implemented a custom memory pool to reduce fragmentation and improve performance during intense gameplay sequences.</p>
+
+    <h3>Performance Optimization</h3>
+    <p>To maintain 60 FPS even with numerous entities on screen, I developed spatial partitioning for collision detection and implemented object pooling for frequently created/destroyed entities like projectiles.</p>
+
+    <h3>Cross-Platform Compatibility</h3>
+    <p>Using SDL2 helped create a cross-platform foundation, but I still needed to write platform-specific code for file handling and some input methods.</p>
+
+    <h2>🔮 Future Development</h2>
+    <p>Space Fighter is an ongoing project, and I have several exciting features planned:</p>
+    <ul>
+        <li>Boss battles with complex patterns and phases</li>
+        <li>Local multiplayer cooperative mode</li>
+        <li>Additional weapon types and power-ups</li>
+        <li>Level editor for community-created content</li>
     </ul>
 
     <div class="call-to-action">
-        <h3>Ready to Join the Battle? 🚀</h3>
-        <p>Space Fighter is available now! Download it, play it, and let me know what you think. Your feedback helps shape the future of the game!</p>
-        <a href="https://github.com/akashadsare/Space_fighter" class="download-button">Get Started Now</a>
+        <h3>Try Space Fighter Yourself! 🚀</h3>
+        <p>I've made Space Fighter available as an open-source project. Download it, play it, and feel free to explore the code. I welcome feedback and contributions!</p>
+        <a href="https://github.com/yourusername/Space_fighter" class="download-button">Download Space Fighter</a>
     </div>
 
     <div class="author-info">
         <h3>About the Developer</h3>
-        <p>Hi! I'm Akash Adsare, a passionate game developer and Python enthusiast. Space Fighter is my latest project, combining my love for classic arcade games with modern development practices.</p>
+        <p>I'm a passionate game developer with a love for retro gaming and low-level programming. Space Fighter represents my journey learning game development fundamentals while creating something fun and engaging.</p>
         <div class="social-links">
-            <a href="https://github.com/akashadsare/Space_fighter" target="_blank">GitHub Repository</a>
+            <a href="https://github.com/yourusername/Space_fighter" target="_blank">GitHub Repository</a>
+            <a href="https://twitter.com/yourusername" target="_blank">Twitter</a>
         </div>
     </div>
 </div>
 </body>
-</html> 
+</html>
